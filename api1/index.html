@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Low level rest example</title>
+    <script src="min.js"></script>
+  </head>
+  <body>
+    <h1>Tabla de Datos</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Titulo</th>
+          <th>Genero</th>
+          <th>Año</th>
+          <th>Duracion</th>
+        </tr>
+      </thead>
+      <tbody id="tabla-body">
+        <!-- Los resultados de la API se mostrarán aquí -->
+      </tbody>
+    </table>
+
+    <h1>API de Ejemplo (POST)</h1>
+
+    <form id="miFormulario1">
+      <label for="titulo">Titulo:</label>
+      <input type="text" id="titulo" name="titulo" required /><br /><br />
+
+      <label for="genero">Genero:</label>
+      <input type="text" id="genero" name="genero" required /><br /><br />
+
+      <label for="anno_estreno">Año:</label>
+      <input
+        type="text"
+        id="anno_estreno"
+        name="anno_estreno"
+        required
+      /><br /><br />
+
+      <label for="duracion_minutos">duracion:</label>
+      <input
+        type="text"
+        id="duracion_minutos"
+        name="duracion_minutos"
+        required
+      /><br /><br />
+
+      <input type="submit" value="Enviar" />
+    </form>
+
+    <div id="resultado1"></div>
+
+    <iframe
+      src="put.php"
+      width="100%"
+      height="300"
+      style="border: none"
+    ></iframe>
+    
+    <iframe
+      src="index2.php"
+      width="100%"
+      height="100%"
+      style="border: none"
+    ></iframe>
+
+    <script>
+      // Realizar la solicitud GET a la API en PHP
+      fetch("method.php")
+        .then((response) => response.json())
+        .then((data) => {
+          const tablaBody = document.getElementById("tabla-body");
+          data.forEach((item) => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+            <td>${item.id_pelicula}</td>
+            <td>${item.titulo}</td>
+            <td>${item.genero}</td>
+            <td>${item.anno_estreno}</td>
+            <td>${item.duracion_minutos}</td>
+          `;
+            tablaBody.appendChild(row);
+          });
+        })
+        .catch((error) => console.error("Error:", error));
+
+      // Realizar la solicitud POST a la API en PHP
+      const postData = async (url = "", data = {}) => {
+        const response = await fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
+        return response.text();
+      };
+
+      document
+        .getElementById("miFormulario1")
+        .addEventListener("submit", async (event) => {
+          event.preventDefault();
+
+          const formData = {
+            titulo: document.getElementById("titulo").value,
+            genero: document.getElementById("genero").value,
+            anno_estreno: document.getElementById("anno_estreno").value,
+            duracion_minutos: document.getElementById("duracion_minutos").value,
+          };
+
+          try {
+            const response = await postData("method.php", formData);
+            const resultadoDiv1 = document.getElementById("resultado1");
+            resultadoDiv1.textContent = response;
+            console.log("Respuesta del servidor:", response);
+            // Puedes hacer lo que desees con la respuesta del servidor aquí
+          } catch (error) {
+            console.error("Error:", error);
+          }
+        });
+    </script>
+  </body>
+</html>
