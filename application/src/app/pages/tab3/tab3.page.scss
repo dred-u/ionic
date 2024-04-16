@@ -1,0 +1,30 @@
+ .custom-header {
+    --background: #9A0315;
+    color: white; 
+ } 
+
+  .content {
+    display: flex;
+    flex-direction: column; 
+    height: 100%; 
+  }
+
+  .content-inner {
+    padding: 20px;
+    text-align: center; 
+    border-bottom: 2px solid darkgray;
+    border-radius: 2px;
+    margin: 0 20px 10px 20px;
+  }
+
+  .content-inner p {
+    font-size: 25px;
+    font-weight:500;
+    margin:10px;
+  }
+
+  .button-container {
+    display: flex; 
+    flex-direction: column;
+    padding: 20px; 
+  }

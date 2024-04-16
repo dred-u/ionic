@@ -1,0 +1,22 @@
+<div class="body-login">
+  <app-toolbar></app-toolbar>
+
+  <section class="section-content">
+    <h2>Registrarse</h2>
+    <h3>Por favor regístrate para continuar</h3>
+
+    <form class="login-form" [formGroup]="formReg" (ngSubmit)="onSubmit()">
+      <input placeholder="Nombre" icon="mail-outline" formControlName="nombre" type="text">
+
+      <input placeholder="Correo" icon="mail-outline" formControlName="email" type="email">
+
+      <input placeholder="Contraseña" icon="lock-closed-outline" formControlName="password" type="password">
+
+      <button type="submit" [disabled]="!formReg.valid">Registrarse</button>
+    </form>
+
+    <footer class="footer-content">
+      <p>¿Ya tienes cuenta? <a href="../login/">¡Inicia Sesión!</a></p>
+    </footer>
+  </section>
+</div>

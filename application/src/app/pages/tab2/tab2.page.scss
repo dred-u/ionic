@@ -1,0 +1,33 @@
+.custom-header {
+    --background: #9A0315; /* Cambia el color de fondo del encabezado */
+    color: white; /* Cambia el color del texto en el encabezado */
+}
+
+.form-content {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+}
+
+.card-sub {
+    padding: 0px 20px 10px 20px;
+}
+
+.form-content ion-item {
+    margin-bottom: 2px;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.card-content p{
+    font-size: 18px;
+}
+
+.button {
+    margin-top: 20px; 
+    margin-left: auto; 
+    margin-right: auto;
+}

@@ -1,0 +1,211 @@
+<ion-header>
+  <ion-toolbar class="custom-header">
+    <ion-title> Inicio </ion-title>
+    <ion-buttons slot="end">
+      <ion-button class="add-button" (click)="setOpen(true)">
+        <ion-icon slot="start" name="add-outline"></ion-icon>
+        Nueva
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid [fixed]="true">
+    <ion-row class="content">
+      <ion-col size="auto" *ngFor="let item of resp" class="custom-col">
+        <ion-card class="custom-card">
+          <img [src]="item.imagen" class="custom-image" />
+          <ion-card-header class="card-head">
+            <ion-card-title class="title">{{ item.titulo }}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content class="card-content">
+            <p>Genero: {{ item.genero }}</p>
+            <p>Año: {{ item.anno_estreno }}</p>
+            <p>Duracion: {{ item.duracion_minutos }} minutos</p>
+          </ion-card-content>
+
+          <ion-card-subtitle class="card-sub">
+            <ion-button
+              (click)="item.id_pelicula && eliminarDato(item.id_pelicula)"
+              class="button-del"
+              size="small"
+            >
+              <ion-icon name="trash-outline"></ion-icon>
+            </ion-button>
+            <ion-button
+              (click)="item.id_pelicula && setEditOpen(true, item.id_pelicula)"
+              class="button-ed"
+              size="small"
+            >
+              <ion-icon name="create-outline"></ion-icon>
+            </ion-button>
+            <ion-button
+              (click)="item.id_pelicula && datoFavorito(item.id_pelicula)"
+              class="button-fav"
+              size="small"
+            >
+              <ion-icon name="star"></ion-icon>
+            </ion-button>
+          </ion-card-subtitle>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-modal [isOpen]="isModalOpen">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Añadir pelicula</ion-title>
+          <ion-buttons slot="end">
+            <ion-button fill="outline" color="warning" (click)="setOpen(false)"
+              >Cerrar</ion-button
+            >
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content class="ion-padding">
+        <form
+          class="form-content"
+          [formGroup]="formPost"
+          (ngSubmit)="crearDato()"
+        >
+          <ion-item>
+            <ion-input
+              label="Título"
+              type="text"
+              formControlName="titulo"
+            ></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-select label="Género" formControlName="genero">
+              <ion-select-option value="Acción">Acción</ion-select-option>
+              <ion-select-option value="Aventura">Aventura</ion-select-option>
+              <ion-select-option value="Drama">Drama</ion-select-option>
+              <ion-select-option value="Fantasía">Fantasía</ion-select-option>
+              <ion-select-option value="Musical">Musical</ion-select-option>
+              <ion-select-option value="Comedia">Comedia</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-input
+              label="Año de estreno"
+              type="number"
+              min="1900"
+              max="2099"
+              formControlName="anno_estreno"
+            ></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input
+              label="Duración (minutos)"
+              type="number"
+              min="0"
+              max="400"
+              formControlName="duracion_minutos"
+            ></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input
+              label="Imagen (URL)"
+              formControlName="imagen"
+            ></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-button
+              class="button-send"
+              size="default"
+              (click)="setOpen(false)"
+              type="submit"
+              [disabled]="!formPost.valid"
+              style="margin: auto; display: block"
+              color="success"
+            >
+              Enviar
+            </ion-button>
+          </ion-item>
+        </form>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+  <ion-modal [isOpen]="editModalOpen">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Editar pelicula</ion-title>
+          <ion-buttons slot="end">
+            <ion-button
+              fill="outline"
+              color="warning"
+              (click)="setEditOpen(false,0)"
+              >Cerrar</ion-button
+            >
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <form
+          class="form-content"
+          [formGroup]="formPost"
+          (ngSubmit)="editarDato()"
+        >
+          <ion-item>
+            <ion-input
+              label="Título"
+              type="text"
+              formControlName="titulo"
+            ></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-select label="Género" formControlName="genero">
+              <ion-select-option value="Acción">Acción</ion-select-option>
+              <ion-select-option value="Aventura">Aventura</ion-select-option>
+              <ion-select-option value="Drama">Drama</ion-select-option>
+              <ion-select-option value="Fantasía">Fantasía</ion-select-option>
+              <ion-select-option value="Musical">Musical</ion-select-option>
+              <ion-select-option value="Comedia">Comedia</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-input
+              label="Año de estreno"
+              type="number"
+              min="1900"
+              max="2099"
+              formControlName="anno_estreno"
+            ></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input
+              label="Duración (minutos)"
+              type="number"
+              min="0"
+              max="400"
+              formControlName="duracion_minutos"
+            ></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input
+              label="Imagen (URL)"
+              formControlName="imagen"
+            ></ion-input>
+          </ion-item>
+          <ion-item class="button-mod">
+            <ion-button
+              class="button-send"
+              type="submit"
+              size="default"
+              style="margin: auto; display: block"
+              color="success"
+            >
+              Enviar
+            </ion-button>
+          </ion-item>
+        </form>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>

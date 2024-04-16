@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar class="custom-header">
+    <ion-title> Favoritas </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid [fixed]="true">
+    <ion-row class="content"  *ngIf="res && res.length >= 1; else noItems" >
+      <ion-col size="auto" *ngFor="let item of res" class="custom-col">
+        <ion-card class="custom-card">
+          <img [src]="item.imagen" class="custom-image" />
+          <ion-card-header class="card-head">
+            <ion-card-title class="title">{{ item.titulo }}</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content class="card-content">
+            <p>Genero: {{ item.genero }}</p>
+            <p>Año: {{ item.anno_estreno }}</p>
+            <p>Duracion: {{ item.duracion_minutos }} minutos</p>
+          </ion-card-content>
+
+          <ion-card-subtitle class="card-sub">
+            <ion-button
+              (click)="item.id_favorita && eliminarDato(item.id_favorita)"
+              class="button-del"
+              size="large"
+              style="display: block; --background: crimson;"
+            >
+              <ion-icon name="trash-outline"></ion-icon>
+            </ion-button>
+          </ion-card-subtitle>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ng-template #noItems>
+      <ion-row>
+        <ion-col size="12" class="custom-col ion-text-cente">
+          <p>Aun no tienes peliculas favoritas para mostrar.</p>
+        </ion-col>
+      </ion-row>
+    </ng-template>
+
+  </ion-grid>
+</ion-content>

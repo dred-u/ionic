@@ -1,0 +1,75 @@
+.custom-header {
+    --background: #9A0315; /* Cambia el color de fondo del encabezado */
+    color: white; /* Cambia el color del texto en el encabezado */
+}
+
+.content{
+    display: flex;
+    justify-content: center;
+}
+
+.custom-col{
+    display: flex;
+    justify-content: center;
+}
+
+.custom-card {
+    --background:#2E2E2E;
+    border: 1px solid #4e4e4e;
+    border-radius: 6px;
+    width: 150px; 
+    height: 390px;
+}
+.card-head {
+    padding: 0px;
+    margin: 10px 5px 0 5px;
+    height: 30px;
+}
+
+.card-sub {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    margin: 5px;
+}
+
+.card-content{
+    padding: 0;
+    margin: 10px 5px 0 5px;
+}
+
+.card-content p{
+    font-size: 13px;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.add-button{
+    --background: #2CB049;
+    --color: white;
+    font-size:16px;
+}
+
+.button-del {
+    --background:#d5021b;
+}
+.button-ed {
+    --background:#d5bc02;
+    --color:black;
+}
+
+.button-fav {
+    --background:#0cc04e;
+    --color:#000000;
+}
+
+.custom-image {
+    width: 150px; 
+    height: 225px;
+}  
+
+//////////////////////////////
+

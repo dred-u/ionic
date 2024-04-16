@@ -1,0 +1,42 @@
+<div class="body-login">
+  <app-toolbar></app-toolbar>
+
+  <section class="section-content">
+    <h2>Iniciar sesión</h2>
+    <h3>Por favor inicia sesión para continuar</h3>
+
+    <form class="login-form" [formGroup]="formLog" (ngSubmit)="onSubmit()">
+      <input icon="mail-outline" type="email" autocomplete="email" placeholder="Correo"  formControlName="email">
+
+      <input icon="lock-closed-outline" type="password" autocomplete="off" placeholder="Contraseña" formControlName="password">
+
+      <button type="submit" [disabled]="!formLog.valid">
+        Iniciar sesion
+      </button>
+
+    </form>
+  </section>
+
+  <footer class="footer-content">
+    <p>¿No tienes cuenta? <a href="../register/">¡Registrate!</a></p>
+  </footer>
+</div>
+
+<!--
+
+<ion-content [fullscreen]="true">
+  <form FormGroup="form" (ngSubmit)="login()">
+    <ion-item>
+      <ion-input label="Correo" labelPlacement="floating" FormControl="formLog.controls.email" type="email" name="email" required></ion-input>
+    </ion-item>
+    
+    <ion-item>
+      <ion-input  label="Contraseña" labelPlacement="floating" FormControl="formLog.controls.password" type="password" name="password" required></ion-input>
+    </ion-item>
+
+    <button type="submit">Iniciar sesión</button>
+  </form>
+
+</ion-content>
+-->
+

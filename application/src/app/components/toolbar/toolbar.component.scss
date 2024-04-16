@@ -1,0 +1,24 @@
+.container {
+    background-color: #8B0000;
+    background-image: url(../../../assets/img/lines-bg.webp);
+    background-size: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 40vh;
+    font-family: "Bungee", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .logo img {
+    width: 100px;
+    height: auto;
+    transform: rotate(-5.99deg);
+  
+  }
+
+  h1 {
+    margin: 0;
+  }
