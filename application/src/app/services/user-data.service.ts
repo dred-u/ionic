@@ -33,6 +33,7 @@ export class UserDataService {
     sessionStorage.removeItem('correo');
     sessionStorage.removeItem('token');
     sessionStorage.removeItem('nombre');
+    sessionStorage.removeItem('id');
   }
 
 }
